@@ -1,0 +1,16 @@
+<div>
+    <md-content layout="row" layout-sm="column">
+        <md-input-container>
+            <label>New task</label>
+            <input ng-model="m.newtodo">
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="m.add()">Add</md-button>
+        <md-progress-circular ng-if="m.adding" md-mode="indeterminate"></md-progress-circular>
+    </md-content>
+    <ul class="todo">
+        <li ng-repeat="todo in m.todos">
+            <span>{[{todo.description}]}</span>
+            <md-button class="md-raised" ng-click="m.remove(todo)">Remove</md-button>
+        </li>
+    </ul>
+</div>

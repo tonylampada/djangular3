@@ -1,0 +1,21 @@
+<div>
+    <md-toolbar layout="row" md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <h1>{[{m.active_component.title}]}</h1>
+            <md-button class="md-raised" ng-class="{'md-primary': m.showing == 'EXAMPLE'}" ng-click="m.show_example()">Example</md-button>
+            <md-button class="md-raised" ng-class="{'md-primary': m.showing == 'SOURCE'}" ng-click="m.show_source()">View Source</md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+		<div ng-if="m.showing == 'EXAMPLE'" ng-include="m.get_include()"></div>
+		<div ng-if="m.showing == 'SOURCE'">
+            <md-tabs md-border-bottom md-autoselect>
+                <md-tab ng-repeat="sourcefile in m.active_component.source_files" label="{[{sourcefile.name}]}">
+                    <md-whiteframe class="md-whiteframe-z2" layout layout-padding layout-align="left">
+                        <pre>{[{sourcefile.content}]}</pre>
+                    </md-whiteframe>
+                </md-tab>
+            </md-tabs>
+		</div>
+    </md-content>
+</div>

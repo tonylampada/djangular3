@@ -1,0 +1,16 @@
+<div layout="column">
+    <div flex ng-repeat="category in m.categories | orderBy: 'name' ">
+        <div layout="row" flex class="md-button-toggle md-button md-default-theme" ng-click="m.toggle_open(category)">
+            {[{category.name}]} 
+            <i ng-hide="category.open" class="material-icons" style="font-size: 14px">keyboard_arrow_down</i>
+            <i ng-show="category.open" class="material-icons" style="font-size: 14px">keyboard_arrow_up</i>
+        </div>
+        <ul layout="column" ng-show="category.open">
+          <li ng-repeat="component in m.components | filter: by_category(category.name) | orderBy: 'name' ">
+            <a class="md-button" ng-class="{'md-primary': component == m.active_component}" href="#/{[{component.category}]}/{[{component.title}]}">
+              {[{component.title}]}
+            </a>
+          </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div>
+	<div ng-if="m.loading">loading...</div>
+	<div ng-if="!m.loading">
+		<div>login: {[{m.user.username}]}</div>
+		<div>name: {[{m.user.name}]}</div>
+		<div>Paypal: {[{m.user.has_paypal}]}</div>
+		<div>Bitcoin: {[{m.user.has_bitcoin}]}</div>
+	</div>
+</div>

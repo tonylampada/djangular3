@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1" />
+        <link rel="stylesheet" href="./css/lib.css">
+        <link rel="stylesheet" href="./css/fs.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="./js/lib.js"></script>
+        <!--FSJS-->
+        <!--FSJS END-->
+        <script>
+            DOCS.angular_dependencies = ['fsdocs'];
+            FSDOCS.angular_dependencies = [];
+            if(FS.USE_TEAMPLE_CACHE){
+                DOCS.angular_dependencies.push('fstemplates');
+                DOCS.angular_dependencies.push('docstemplates');
+            }
+        </script>
+        <!--DOCSJS-->
+        <!--DOCSJS END-->
+        <!--FSDOCSJS-->
+        <!--FSDOCSJS END-->
+        <script>
+            angular.module('fsdocs', FSDOCS.angular_dependencies);
+        </script>
+    </head>
+    <body ng-app="docs_main" layout="column">
+        <div layout="row" flex>
+            <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+                <component-catalog-tree group="fs"></component-catalog-tree>
+            </md-sidenav>
+            <div layout="column" flex id="content">
+                <div ui-view></div>
+            </div>
+        </div>
+    </body>
+</html>
