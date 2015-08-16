@@ -23,7 +23,7 @@ var fs = {
         var settingsjs = env == 'prod' ? './settings/prod.js' : './settings/dev.js';
         return [
             settingsjs,
-            './src/fs_global.js',
+            './src/main/fs_global.js',
             './src/commons/jsutils.js',
             './src/commons/fsngutils.js',
             './src/*.js',
@@ -34,7 +34,7 @@ var fs = {
     },
     jstests: [
         './settings/dev.js',
-        './src/fs_global.js',
+        './src/main/fs_global.js',
         './src/commons/jsutils.js',
         './src/commons/fsngutils.js',
         './src/*.js',
@@ -77,7 +77,7 @@ var lib = {
         './lib/angular-1.4.0/angular-aria.js',
         './lib/angular-1.4.0/angular-animate.js',
         './lib/angular-1.4.0/angular-cookies.js',
-        './lib/angular-material-0.9.8/angular-material.js',
+        './lib/bootstrap/dist/js/bootstrap.js',
         './lib/angular-ui-router-0.2.15/angular-ui-router.js',
     ],
     jsmin: [
@@ -86,11 +86,20 @@ var lib = {
         './lib/angular-1.4.0/angular-aria.min.js',
         './lib/angular-1.4.0/angular-animate.min.js',
         './lib/angular-1.4.0/angular-cookies.min.js',
-        './lib/angular-material-0.9.8/angular-material.min.js',
+        './lib/bootstrap/dist/js/bootstrap.min.js',
         './lib/angular-ui-router-0.2.15/angular-ui-router.min.js',
     ],
-    css: ['./lib/angular-material-0.9.8/angular-material.css'],
-    cssmin: ['./lib/angular-material-0.9.8/angular-material.min.css'],
+    css: [
+        './lib/bootstrap/dist/css/bootstrap.css',
+        './lib/bootstrap/dist/css/bootstrap-theme.css',
+    ],
+    cssmin: [
+        './lib/bootstrap/dist/css/bootstrap.min.css',
+        './lib/bootstrap/dist/css/bootstrap-theme.min.css',
+    ],
+    tocopy: [
+        './lib/bootstrap/dist/fonts/**',
+    ],
 }
 
 var testlib = {
@@ -104,7 +113,7 @@ var testlib = {
 
 ////////// Big tasks
 
-var commontasks = ['concatjslib', 'concatjslibmin', 'concatcsslib', 'concatcsslibmin', 'sass'];
+var commontasks = ['concatjslib', 'concatjslibmin', 'concatcsslib', 'concatcsslibmin', 'sass', 'copylibfiles'];
 var concatjstasks = ['concatjsfs', 'concatjsfsdocs', 'concatjsdocs']
 gulp.task('dev', commontasks.concat(['linkjsdev']));
 gulp.task('prod', commontasks.concat(concatjstasks).concat(['copydocssamples', 'linkjsprod']));
@@ -114,6 +123,7 @@ concattask('concatjslib', {src: lib.js, dest: 'lib.js'});
 concattask('concatjslibmin', {src: lib.jsmin, dest: 'lib.min.js'});
 concattask('concatcsslib', {src: lib.css, dest: '../css/lib.css'});
 concattask('concatcsslibmin', {src: lib.cssmin, dest: '../css/lib.min.css'});
+copytask('copylibfiles', lib.tocopy, '', {prefix: 3});
 jshinttask('jshintall')
 sasstask('sass');
 
@@ -227,7 +237,7 @@ function jshinttask(id){
 
 function linktaskdev(id){
     gulp.task(id, function() {
-        return gulp.src('./src/pages/*.html')
+        return gulp.src('./src/*.html')
             .pipe(linker(linker_params(fsdocs.js, 'FSDOCSJS', '.')))
             .pipe(linker(linker_params(fs.js('dev'), 'FSJS', '.')))
             .pipe(linker(linker_params(docs.js, 'DOCSJS', '.')))

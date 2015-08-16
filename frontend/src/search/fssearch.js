@@ -33,7 +33,7 @@ angular.module('fssearch').directive('fssearch', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'search/fssearch.html',
+		templateUrl: APP.BASE_URL+'search/fssearch.html',
 		controller: function($scope, FSSearchModel){
 			var m = $scope.m = FSSearchModel;
 		},

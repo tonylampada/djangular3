@@ -40,7 +40,7 @@ angular.module('todo').directive('todo', function(){
         restrict: 'E',
         replace: true,
         scope: {},
-        templateUrl: FS.BASE_URL+'components/todo_example/todo.html',
+        templateUrl: APP.BASE_URL+'components/todo_example/todo.html',
         controller: function($scope, TODOModel){
             var m = $scope.m = TODOModel;
         }

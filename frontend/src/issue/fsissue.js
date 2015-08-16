@@ -15,7 +15,7 @@ angular.module('fsissue').directive('fsissue', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'issue/fsissue.html',
+		templateUrl: APP.BASE_URL+'issue/fsissue.html',
 		controller: function($scope, FSIssueModel){
 
 		},

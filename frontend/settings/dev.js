@@ -1,8 +1,8 @@
-if(!window.FS){
-    window.FS = {};
+if(!window.APP){
+    window.APP = {};
 }
-FS.BASE_URL = '/src/';
-FS.USE_TEAMPLE_CACHE = false;
+APP.BASE_URL = '/src/';
+APP.USE_TEAMPLE_CACHE = false;
 
 if(!window.DOCS){
     window.DOCS = {};

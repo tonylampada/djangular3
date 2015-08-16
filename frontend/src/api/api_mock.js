@@ -66,11 +66,11 @@ angular.module('fsapi').factory('FSApi', function($q, $timeout, $log){
 		return function(){
 			var _arguments = arguments;
 			var _this = this;
-			if(!FS.MOCK){
-				FS.MOCK = {};
+			if(!APP.MOCK){
+				APP.MOCK = {};
 			}
-			if(FS.MOCK.timeout === undefined){
-				FS.MOCK.timeout = 500;
+			if(APP.MOCK.timeout === undefined){
+				APP.MOCK.timeout = 500;
 			}
 			var deferred = $q.defer();
 			$timeout(function(){
@@ -81,7 +81,7 @@ angular.module('fsapi').factory('FSApi', function($q, $timeout, $log){
 					$log.error(ex);
 					deferred.reject(ex); //TODO: simulate http stuff
 				}
-			}, FS.MOCK.timeout);
+			}, APP.MOCK.timeout);
 			return deferred.promise;
 		};
 	}

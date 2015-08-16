@@ -15,7 +15,7 @@ angular.module('fsproject').directive('fsproject', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'project/fsproject.html',
+		templateUrl: APP.BASE_URL+'project/fsproject.html',
 		controller: function($scope, FSProjectModel){
 
 		},

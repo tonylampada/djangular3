@@ -11,7 +11,7 @@ angular.module('fshome').directive('fshome', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'home/fshome.html',
+		templateUrl: APP.BASE_URL+'home/fshome.html',
 		controller: function($scope, FSHomeModel){
 
 		},

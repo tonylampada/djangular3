@@ -15,7 +15,7 @@ angular.module('fssponsor').directive('fssponsor', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'sponsor/fssponsor.html',
+		templateUrl: APP.BASE_URL+'sponsor/fssponsor.html',
 		controller: function($scope, FSSponsorModel){
 
 		},

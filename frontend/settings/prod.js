@@ -1,8 +1,8 @@
-if(!window.FS){
-    window.FS = {};
+if(!window.APP){
+    window.APP = {};
 }
-FS.BASE_URL = 'TEMPLATE_CACHE/';
-FS.USE_TEAMPLE_CACHE = true;
+APP.BASE_URL = 'TEMPLATE_CACHE/';
+APP.USE_TEAMPLE_CACHE = true;
 
 if(!window.DOCS){
     window.DOCS = {};

@@ -29,7 +29,7 @@ angular.module('fsviewuser').directive('fsviewuser', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'viewuser/fsviewuser.html',
+		templateUrl: APP.BASE_URL+'viewuser/fsviewuser.html',
 		controller: function($scope, FSViewUserModel){
 			$scope.m = FSViewUserModel;
 		},

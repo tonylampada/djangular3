@@ -11,7 +11,7 @@ angular.module('fseditprofile').directive('fseditprofile', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		templateUrl: FS.BASE_URL+'editprofile/fseditprofile.html',
+		templateUrl: APP.BASE_URL+'editprofile/fseditprofile.html',
 		controller: function($scope, FSEditProfileModel){
 
 		},
