@@ -145,8 +145,9 @@ function produce_alias {
     echo "Esse comando verdinho aih cria um alias que vc pode usar"
     echo "pra cair no ambdev deste projeto a partir de qualquer lugar do seu bash."
     echo "Sugestão: adiciona no seu ~/.bashrc"
+    echo "Sugestão2: Muda o nome desse alias aih pra algo mais adequado"
     echo "------------------------------------------------------------------------"
-    echo_green "alias fs='cd $(readlink -e $PROJ_BASE) && . dev.sh'"
+    echo_green "alias dj3='cd $(readlink -e $PROJ_BASE) && . dev.sh'"
     echo "------------------------------------------------------------------------"
 }
 
