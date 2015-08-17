@@ -1,7 +1,6 @@
 (function(){
 
     var deps = [
-        'ngMaterial',
         'component_catalog',
         'ui.router',
     ];

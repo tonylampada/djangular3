@@ -1,27 +1,27 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta name="viewport" content="initial-scale=1" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <title>Djangular3 Single Page Application</title>
+
         <link rel="stylesheet" href="./css/lib.css">
-        <link rel="stylesheet" href="./css/fs.css">
+        <link rel="stylesheet" href="./css/app.css">
+        <link rel="stylesheet" href="./css/index.css">
         <script src="./js/lib.js"></script>
-        <!--FSJS-->
-        <!--FSJS END-->
+        <!--APPJS-->
+        <!--APPJS END-->
     </head>
-    <body ng-app="fs_main" layout="column" ng-controller="FSMainCtrl">
-<!--         <md-toolbar layout="row">
-            <fstoolbar></fstoolbar>
-        </md-toolbar>
-        <div layout="row" flex>
-            <div layout="column" flex id="content">
-                <md-content layout="column" flex class="md-padding">
-                    <div ui-view></div>
-                </md-content>
-            </div>
-        </div>
- -->
-    <p> lorem ipsum dolor sit amet</p>    
-    <p> lorem ipsum dolor sit amet</p>    
-    <p> lorem ipsum dolor sit amet</p>    
-    <p> lorem ipsum dolor sit amet</p>    
+
+    <body ng-app="app_main" ng-controller="AppMainCtrl">
+        <!-- Fixed navbar -->
+        <apptoolbar></apptoolbar>
+        <div ui-view></div>
     </body>
 </html>
