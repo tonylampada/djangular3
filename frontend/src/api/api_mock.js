@@ -1,11 +1,11 @@
-angular.module('fsapi', []);
-angular.module('fsapi').factory('FSApi', function($q, $timeout, $log){
-	var fsapi = {
+angular.module('appapi', []);
+angular.module('appapi').factory('AppApi', function($q, $timeout, $log){
+	var api = {
 		add: _mockasync(add),
 		login: _mockasync(login),
 		logout: _mockasync(logout),
 		whoami: _mockasync(whoami),
-		list_issues: _mockasync(list_issues),
+		list_cameras: _mockasync(list_cameras),
 		get_user_details: _mockasync(get_user_details),
 	};
 
@@ -45,10 +45,10 @@ angular.module('fsapi').factory('FSApi', function($q, $timeout, $log){
 		return who;
 	}
 
-	function list_issues(filters){
+	function list_cameras(filters){
 		return [
-			{project_name: 'TimeTravel', title: 'Invent a time machine'},
-			{project_name: 'Delorean', title: 'Lower warp speed to 88mph'}
+			{name: 'Camera do BBB'},
+			{name: 'Camera 17'}
 		];
 	}
 
@@ -86,5 +86,5 @@ angular.module('fsapi').factory('FSApi', function($q, $timeout, $log){
 		};
 	}
 
-	return fsapi;
+	return api;
 });

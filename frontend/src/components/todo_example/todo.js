@@ -1,8 +1,8 @@
 //This is a toy component to demonstrate how to make them
 
-angular.module('todo', ['fsapi']);
+angular.module('todo', ['appapi']);
 
-angular.module('todo').factory('TODOModel', function(FSApi){
+angular.module('todo').factory('TODOModel', function(AppApi){
     var m = {
         newtodo: '',
         adding: false,
@@ -17,7 +17,7 @@ angular.module('todo').factory('TODOModel', function(FSApi){
     function add(){
         var todo = {description: m.newtodo};
         m.adding = true;
-        FSApi.add(todo).then(function(result){
+        AppApi.add(todo).then(function(result){
             var saved_todo = result.data;
             m.todos.push(saved_todo);
         }).finally(function(){

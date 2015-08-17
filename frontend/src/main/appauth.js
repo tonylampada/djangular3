@@ -1,6 +1,6 @@
-angular.module('fsauth', ['fsapi']);
+angular.module('appauth', ['appapi']);
 
-angular.module('fsauth').factory('FSAuth', function(FSApi){
+angular.module('appauth').factory('AppAuth', function(AppApi){
 	var auth = {
 		user: null,
 		authenticated: authenticated,
@@ -17,13 +17,13 @@ angular.module('fsauth').factory('FSAuth', function(FSApi){
 	}
 
 	function logout(){
-		FSApi.logout().then(function(){
+		AppApi.logout().then(function(){
 			auth.user = null;
 		});
 	}
 
 	function _check_for_authentication(){
-		FSApi.whoami().then(function(result){
+		AppApi.whoami().then(function(result){
 			var _who = result.data;
 			if(_who.authenticated){
 				auth.user = _who.user;

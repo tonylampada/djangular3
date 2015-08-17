@@ -10,9 +10,9 @@ if(!window.DOCS){
 DOCS.BASE_URL = '/docs_src/';
 DOCS.SAMPLE_BASE_URL = '/src/';
 
-if(!window.FSDOCS){
-    window.FSDOCS = {};
+if(!window.APPDOCS){
+    window.APPDOCS = {};
 }
-if(!FSDOCS.angular_dependencies){
-	FSDOCS.angular_dependencies = [];
+if(!APPDOCS.angular_dependencies){
+	APPDOCS.angular_dependencies = [];
 }

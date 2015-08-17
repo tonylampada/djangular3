@@ -4,7 +4,6 @@
         'ngMaterial',
         'component_catalog',
         'ui.router',
-        'fsngutils',
     ];
     if(window.DOCS && DOCS.angular_dependencies){
         deps = deps.concat(DOCS.angular_dependencies);

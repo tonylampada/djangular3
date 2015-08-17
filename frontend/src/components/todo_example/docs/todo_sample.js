@@ -1,8 +1,8 @@
-FSDOCS.angular_dependencies.push('todo');
+APPDOCS.angular_dependencies.push('todo');
 
 angular.module('component_catalog').run(function(ComponentCatalog){
     ComponentCatalog.add_test_page({
-        group: 'fs',
+        group: 'app',
         title: 'Example: A TODO',
         category: 'Example',
         folder: 'components/todo_example/docs/',

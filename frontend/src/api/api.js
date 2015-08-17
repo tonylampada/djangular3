@@ -1,7 +1,7 @@
-angular.module('fsapi', ['fsajax']);
+angular.module('appapi', ['appajax']);
 
-angular.module('fsapi').factory('FSApi', function(FSAjax){
-	var fsapi = {
+angular.module('appapi').factory('AppApi', function(AppAjax){
+	var api = {
 		add: todo,
 		login: login,
 		logout: logout,
@@ -13,20 +13,20 @@ angular.module('fsapi').factory('FSApi', function(FSAjax){
 	function todo(){}
 
 	function login(username, password){
-		return FSAjax.post('/api/login', {username: username, password: password});
+		return AppAjax.post('/api/login', {username: username, password: password});
 	}
 
 	function logout(){
-		return FSAjax.get('/api/logout');
+		return AppAjax.get('/api/logout');
 	}
 
 	function whoami(){
-		return FSAjax.get('/api/whoami');
+		return AppAjax.get('/api/whoami');
 	}
 
 	function list_issues(filters){
-		return FSAjax.get('/api/list_issues', {filters: angular.toJson(filters)});
+		return AppAjax.get('/api/list_issues', {filters: angular.toJson(filters)});
 	}
 
-	return fsapi;
+	return api;
 });
