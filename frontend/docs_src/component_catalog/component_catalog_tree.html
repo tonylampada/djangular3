@@ -1,9 +1,11 @@
 <div>
   <ul class="nav nav-sidebar" ng-repeat="category in m.categories | orderBy: 'name' ">
-    <li ng-click="m.toggle_open(category)">
-      <span>{[{category.name}]}</span>
-      <span ng-hide="category.open">(+)</span>
-      <span ng-show="category.open">(-)</span>
+    <li class="group">
+      <a href ng-click="m.toggle_open(category)">
+        <span class="glyphicon glyphicon-plus" ng-hide="category.open"></span>
+        <span class="glyphicon glyphicon-minus" ng-show="category.open"></span>
+        <span>{[{category.name}]}</span>
+      </a>
     </li>
     <li ng-show="category.open" 
         ng-class="{active: component == m.active_component}"
