@@ -8,7 +8,7 @@ angular.module('apptoolbar').directive('apptoolbar', function(){
 		templateUrl: APP.BASE_URL+'components/toolbar/apptoolbar.html',
 		controller: function($scope, AppAuth, $state){
 			$scope.auth = AppAuth;
-			$scope.$state = $state
+			$scope.$state = $state;
 		}
 	};
 });
