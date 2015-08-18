@@ -1,3 +1,9 @@
+# Atenção
+
+Por enquanto, este repositório é praticamente uma cópia do http://github.com/tonylampada/djangular3
+Depois com o tempo cada projeto segue seu rumo.
+A pasta docs contém outros documentos importantes.
+
 # Djangular 3
 
 Django + AngularJS, pronto pra usar. Instruções abaixo.
