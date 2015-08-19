@@ -11,6 +11,6 @@ angular.module('appadmin').directive('appadmin', function(){
 		restrict: 'E',
 		replace: true,
 		scope: {},
-		template: '<iframe src="/admin"></iframe>',
+		template: '<iframe class="admin-iframe" src="/admin"></iframe>',
 	};
 });
