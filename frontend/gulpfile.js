@@ -245,7 +245,7 @@ function linktaskdev(id){
 
 function linktaskprod(id){
     gulp.task(id, ['concatjsapp', 'concatjsappdocs', 'concatjsdocs'], function() {
-        return gulp.src('./src/pages/*.html')
+        return gulp.src('./src/*.html')
             .pipe(linker(linker_params('./dist/js/app.js', 'APPJS', 'dist/')))
             .pipe(linker(linker_params('./dist/js/appdocs.js', 'APPDOCSJS', 'dist/')))
             .pipe(linker(linker_params('./dist/js/docs.js', 'DOCSJS', 'dist/')))
