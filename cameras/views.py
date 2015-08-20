@@ -3,6 +3,7 @@ from django.http.response import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
 from cameras.models import Camera
+from cameras.decorators import ajax_login_required
 
 def login(request):
     username = request.POST['username']
@@ -25,7 +26,6 @@ def logout(request):
 
 
 def whoami(request):
-    print(dir(request.user))
     i_am = {
         'user': {
             'username': request.user.username,
@@ -46,6 +46,7 @@ def get_user_details(request):
     return HttpResponse(json.dumps(user_json), content_type='application/json')
 
 
+@ajax_login_required
 def list_cameras(request):
     filters = json.loads(request.GET.get('filters', '{}'))
     cams = Camera.objects.all()

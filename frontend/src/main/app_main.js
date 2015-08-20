@@ -28,4 +28,12 @@
 
 	angular.module('app_main').controller('AppMainCtrl', function($scope, AppAuth){
 	});
+
+	angular.module('app_main').run(function(AppAjax){
+		AppAjax.set_error_handler(function(response){
+			if(response.status == 401 && response.data.not_authenticated){
+				alert('Voce não está logado. Faça login pra ter acesso a esta funcionalidade');
+			}
+		})
+	})
 })();

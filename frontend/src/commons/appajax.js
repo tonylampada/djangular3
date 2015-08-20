@@ -9,20 +9,27 @@ angular.module('appajax').config(
 
 angular.module('appajax').factory('AppAjax', function($http, $cookies, $log){
 
+    var global_error_handler;
+
     var AppAjax = {
         get: get,
         post: post,
+        set_error_handler: set_error_handler,
     };
 
     function get(url, params){
         if(!params){
             params = {};
         }
-        return $http({
+        var promise = $http({
             method: 'GET',
             url: url,
             params: params
         });
+        if(global_error_handler){
+            promise.catch(global_error_handler);
+        }
+        return promise;
     }
 
     function post(url, params){
@@ -30,11 +37,19 @@ angular.module('appajax').factory('AppAjax', function($http, $cookies, $log){
             params = {};
         }
         $http.defaults.headers.post['X-CSRFToken'] = $cookies.get('csrftoken');
-        return $http({
+        var promise = $http({
             method: 'POST',
             url: url,
             data: $.param(params)
         });
+        if(global_error_handler){
+            promise.catch(global_error_handler);
+        }
+        return promise;
+    }
+
+    function set_error_handler(f){
+        global_error_handler = f;
     }
 
     return AppAjax;
