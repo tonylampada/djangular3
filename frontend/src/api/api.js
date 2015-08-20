@@ -6,8 +6,8 @@ angular.module('appapi').factory('AppApi', function(AppAjax){
 		login: login,
 		logout: logout,
 		whoami: whoami,
-		list_issues: list_issues,
-		get_user_details: todo,
+		list_cameras: list_cameras,
+		get_user_details: get_user_details,
 	};
 
 	function todo(){}
@@ -24,8 +24,12 @@ angular.module('appapi').factory('AppApi', function(AppAjax){
 		return AppAjax.get('/api/whoami');
 	}
 
-	function list_issues(filters){
-		return AppAjax.get('/api/list_issues', {filters: angular.toJson(filters)});
+	function list_cameras(filters){
+		return AppAjax.get('/api/list_cameras', {filters: angular.toJson(filters)});
+	}
+
+	function get_user_details(username){
+		return AppAjax.get('/api/get_user_details', {username: username});	
 	}
 
 	return api;

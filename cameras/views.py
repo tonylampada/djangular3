@@ -2,6 +2,7 @@ import json
 from django.http.response import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
+from cameras.models import Camera
 
 def login(request):
     username = request.POST['username']
@@ -33,3 +34,21 @@ def whoami(request):
         'authenticated': True,
     } if request.user.is_authenticated() else {'authenticated': False}
     return HttpResponse(json.dumps(i_am), content_type='application/json')
+
+
+def get_user_details(request):
+    username = request.GET['username']
+    user = auth.get_user_model().objects.get(username=username)
+    user_json = {
+        'username': user.username,
+        'name': user.first_name,
+    }
+    return HttpResponse(json.dumps(user_json), content_type='application/json')
+
+
+def list_cameras(request):
+    filters = json.loads(request.GET.get('filters', '{}'))
+    cams = Camera.objects.all()
+    cams_dic = [c.to_dict_json() for c in cams]
+    return HttpResponse(json.dumps(cams_dic), content_type='application/json')
+
