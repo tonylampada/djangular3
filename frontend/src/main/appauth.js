@@ -4,12 +4,17 @@ angular.module('appauth').factory('AppAuth', function(AppApi){
 	var auth = {
 		user: null,
 		authenticated: authenticated,
+		has_permission: has_permission,
 		set_user: set_user,
 		logout: logout,
 	};
 
 	function authenticated(){
 		return auth.user !== null && auth.user !== undefined;
+	}
+
+	function has_permission(permission){
+		return auth.user && auth.user.permissions[permission];
 	}
 
 	function set_user(user){

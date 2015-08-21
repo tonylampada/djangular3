@@ -9,15 +9,12 @@ def login(request):
     username = request.POST['username']
     password = request.POST['password']
     user = auth.authenticate(username=username, password=password)
-    user_json = None
+    user_dict = None
     if user is not None:
         if user.is_active:
             auth.login(request, user)
-            user_json = {
-                'username': user.username,
-                'name': user.first_name,
-            }
-    return HttpResponse(json.dumps(user_json), content_type='application/json')
+            user_dict = _user2dict(user)
+    return HttpResponse(json.dumps(user_dict), content_type='application/json')
 
 
 def logout(request):
@@ -27,10 +24,7 @@ def logout(request):
 
 def whoami(request):
     i_am = {
-        'user': {
-            'username': request.user.username,
-            'name': request.user.first_name,
-        },
+        'user': _user2dict(request.user),
         'authenticated': True,
     } if request.user.is_authenticated() else {'authenticated': False}
     return HttpResponse(json.dumps(i_am), content_type='application/json')
@@ -39,11 +33,8 @@ def whoami(request):
 def get_user_details(request):
     username = request.GET['username']
     user = auth.get_user_model().objects.get(username=username)
-    user_json = {
-        'username': user.username,
-        'name': user.first_name,
-    }
-    return HttpResponse(json.dumps(user_json), content_type='application/json')
+    user_dict = _user2dict(user)
+    return HttpResponse(json.dumps(user_dict), content_type='application/json')
 
 
 @ajax_login_required
@@ -53,3 +44,13 @@ def list_cameras(request):
     cams_dic = [c.to_dict_json() for c in cams]
     return HttpResponse(json.dumps(cams_dic), content_type='application/json')
 
+
+def _user2dict(user):
+    return {
+        'username': user.username,
+        'name': user.first_name,
+        'permissions':{
+            'ADMIN': user.is_superuser,
+            'STAFF': user.is_staff,
+        }
+    }

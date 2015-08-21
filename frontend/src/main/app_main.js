@@ -8,6 +8,7 @@
 		'appviewuser',
 		'appapi',
 		'cameras',
+		'appajax',
 	];
 	if(APP.USE_TEAMPLE_CACHE){
 		deps.push('apptemplates');

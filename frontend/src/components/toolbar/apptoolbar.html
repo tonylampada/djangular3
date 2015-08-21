@@ -12,7 +12,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li ng-class="{active: $state.current.name == 'home'}"><a ui-sref="home">Home</a></li>
-        <li ng-class="{active: $state.current.name == 'admin'}"><a ui-sref="admin">Admin</a></li>
+        <li ng-class="{active: $state.current.name == 'admin'}" ng-if="auth.has_permission('ADMIN')"><a ui-sref="admin">Admin</a></li>
         <li ng-class="{active: $state.current.name == 'cameras'}"><a ui-sref="cameras">Cameras</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
