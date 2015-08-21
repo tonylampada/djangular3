@@ -1,12 +1,8 @@
-# Atenção
-
-Por enquanto, este repositório é praticamente uma cópia do http://github.com/tonylampada/djangular3
-Depois com o tempo cada projeto segue seu rumo.
-A pasta docs contém outros documentos importantes.
-
 # Djangular 3
 
-Django + AngularJS, pronto pra usar. Instruções abaixo.
+Django + AngularJS, pronto pra usar. 
+* [Video com overview do setup](http://youtu.be/RvgZkrofgcU)
+* [Explicações mais detalhadas sobre o que acontece no front](https://dicasdolampada.wordpress.com/2015/06/25/a-awesome-setup-for-your-angularjs-project-13/)
 
 # Setup do sistema operacional
 
@@ -60,14 +56,20 @@ pip install -r requirements.txt
 ./manage.py migrate
 ```
 
-* 4) Baixa as dependências pra build do frontend
+* 4) Cria um superusuario no seu banco
+
+```shell
+./manage.py createsuperuser
+```
+
+* 5) Baixa as dependências pra build do frontend
 
 ```shell
 cd frontend
 npm install
 ```
 
-* 5) Importa as funções do dev.sh pro seu bash
+* 6) Importa as funções do dev.sh pro seu bash
 
 ```shell
 cd ..
