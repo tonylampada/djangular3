@@ -108,6 +108,7 @@ function copy2www {
     CCD=$(pwd)
     cd $PROJ_BASE/frontend
     frontprod
+    mkdir -p ../cameras/static/
     cp -Rf dist/js dist/css ../cameras/static/
     cd $CCD
     return $exitcode
