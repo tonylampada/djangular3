@@ -3,6 +3,7 @@
 Django + AngularJS, pronto pra usar. 
 * [Video com overview do setup](http://youtu.be/RvgZkrofgcU)
 * [Explicações mais detalhadas sobre o que acontece no front](https://dicasdolampada.wordpress.com/2015/06/25/a-awesome-setup-for-your-angularjs-project-13/)
+* [Roteiro do Hangout](https://github.com/tonylampada/djangular3/blob/master/roteiro.md)
 
 # Setup do sistema operacional
 
