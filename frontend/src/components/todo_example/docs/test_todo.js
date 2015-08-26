@@ -1,8 +1,8 @@
-describe("[ixsu9euet736] dummy suite", function() {
+describe("[ixsu9euet736] TODO suite", function() {
 
     beforeEach(angular.mock.module('todotester'));
 
-    it('[sdjhgdr347hejh] dummy test', inject(function(TodoTester){
+    it('[sdjhgdr347hejh] TODO test', inject(function(TodoTester){
         TodoTester.assert_count_todos(0);
         TodoTester.type_and_add('one todo');
         TodoTester.type_and_add('to twodos');

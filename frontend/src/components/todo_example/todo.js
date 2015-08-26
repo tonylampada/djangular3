@@ -46,3 +46,21 @@ angular.module('todo').directive('todo', function(){
         }
     };
 });
+
+function teste_pra_brincar_com_todo_no_console(){
+    var m = {
+        newtodo: '',
+        todos: [],
+        add: function(){
+            var todo = {description: m.newtodo};
+            m.todos.push(todo);
+            m.newtodo = '';
+        },
+        remove: function(idx){
+            m.todos.splice(idx, 1);
+        },
+        print: function(){
+            console.log(JSON.stringify(m, null, 4));
+        }
+    };
+}
