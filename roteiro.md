@@ -22,7 +22,7 @@
     1. Tenha um help executável
     1. Tudo é um componente (que pode usar outros componentes)
     1. Tenha uma API fake (com promessas que são cumpridas na base do $timeout)
-    1. Não use o $scope como modelo! Bota esses modelos dentro de serviços!    !important
+    1. Não use o $scope como modelo! Bota esses modelos dentro de serviços!    **!important**
     1. Tenha um catálogo de componentes (DOCS)
     1. Testes devem falar um vocabulário mais próximo do usuário (e isso requer criar serviços adicionais)
 1. Links úteis / saiba mais
