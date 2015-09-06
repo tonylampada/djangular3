@@ -19,6 +19,7 @@
     </head>
 
     <body ng-app="app_main" ng-controller="AppMainCtrl">
+        {% csrf_token %}
         <!-- Fixed navbar -->
         <apptoolbar></apptoolbar>
         <div ui-view></div>
