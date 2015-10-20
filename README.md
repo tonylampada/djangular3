@@ -13,7 +13,7 @@ Vc vai precisar instalar algumas coisas no seu sistema operacoinal pra que tudo 
 * 1) Instala esse monte coisa aí com o apt-get (node, npm, o postgres e umas bibliotecas aih)
 
 ```bash
-sudo apt-get install python3-dev node npm postgresql-9.3 postgresql-server-dev-all
+sudo apt-get install python3-dev nodejs npm postgresql-9.3 postgresql-server-dev-all
 ```
 
 * 2) Instala o gulp
