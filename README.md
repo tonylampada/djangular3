@@ -24,7 +24,7 @@ sudo npm install -g gulp
 
 * 3) Certifique-se que vc tem o python3 (meu ubuntu já veio com o python 2 e o 3, sendo que o 2 é o default)
 
-* 4) Instale o virtualenvwrapper, de acordo com as instruções que tem no site (TODO)
+* 4) Instale o virtualenvwrapper, [de acordo com as instruções que tem no site](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
 
 # Setup do projeto
 
