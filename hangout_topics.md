@@ -1,4 +1,4 @@
-# Roteiro da palestra
+# Hangout topics
 
 1. Who is this hangout for
  * Web developers who know some javascript
