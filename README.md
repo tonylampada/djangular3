@@ -1,5 +1,7 @@
 # Djangular 3
 
+[Setup instructions in english!](https://youtu.be/okWBei-rK_A)
+
 Django + AngularJS, pronto pra usar. 
 * [Video com overview do setup](http://youtu.be/RvgZkrofgcU)
 * [Explicações mais detalhadas sobre o que acontece no front](https://dicasdolampada.wordpress.com/2015/06/25/a-awesome-setup-for-your-angularjs-project-13/)
