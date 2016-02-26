@@ -4,6 +4,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
 from cameras.models import Camera
 from cameras.decorators import ajax_login_required
+from time import sleep
+from datetime import datetime
+
 
 def login(request):
     username = request.POST['username']
@@ -54,3 +57,17 @@ def _user2dict(user):
             'STAFF': user.is_staff,
         }
     }
+
+
+def suga(request):
+    s = float(request.GET['s'])
+    c = int(request.GET['c'])
+    n = 0
+    d1 = datetime.now()
+    while n < c:
+        n += 1
+        sleep(s)
+    d2 = datetime.now()
+    return HttpResponse('%s' % (d2 - d1))
+
+

@@ -7,4 +7,5 @@ urlpatterns = patterns('cameras.views',
     url(r'^api/whoami$', 'whoami'),
     url(r'^api/get_user_details$', 'get_user_details'),
     url(r'^api/list_cameras$', 'list_cameras'),
+    url(r'^suga$', 'suga'),
 )
