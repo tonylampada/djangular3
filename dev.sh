@@ -39,10 +39,14 @@ function devhelp {
     echo -e "${GREEN}frontprodmock${RESTORE}     Constrói o frontend na pasta  ${RED}'frontend/dist'${RESTORE}"
     echo -e "                  O html resultante vai procurar os arquivos .js concatenados na pasta 'frontend/dist'"
     echo -e "                  Usa a API ${RED}mock${RESTORE}"
+    echo -e "                  Parametros:"
+    echo -e "                  --minify <true|false> Gera js e css minificado (default: true)"
     echo -e ""
     echo -e "${GREEN}frontprod${RESTORE}         Constrói o frontend na pasta  ${RED}'frontend/dist'${RESTORE}"
     echo -e "                  O html resultante vai procurar os arquivos .js concatenados na pasta 'frontend/dist'"
     echo -e "                  Usa a API ${RED}de verdade${RESTORE}"
+    echo -e "                  Parametros:"
+    echo -e "                  --minify <true|false> Gera js e css minificado (default: true)"
     echo -e ""
     echo -e "${GREEN}copy2www${RESTORE}          Faz um ${RED}prodbuild${RESTORE} e copia o js+css resultante"
     echo -e "                  pra pasta de resources estáticos do projeto django"
@@ -89,7 +93,7 @@ function frontdev {
 function frontprodmock {
     CD=$(pwd)
     cd $PROJ_BASE/frontend
-    dorun "gulp prod --mock true" "Prod build with mock API"
+    dorun "gulp prod --mock true $*" "Prod build with mock API"
     exitcode=$?
     cd $CD
     return $exitcode
@@ -98,7 +102,7 @@ function frontprodmock {
 function frontprod {
     CD=$(pwd)
     cd $PROJ_BASE/frontend
-    dorun "gulp prod --mock false" "Prod build - real deal"
+    dorun "gulp prod --mock false $*" "Prod build - real deal"
     exitcode=$?
     cd $CD
     return $exitcode

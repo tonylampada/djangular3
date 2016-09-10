@@ -1,5 +1,6 @@
 ////////// requires
 var gulp = require('gulp');
+var debug = require('gulp-debug');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var copy = require('gulp-copy');
@@ -11,10 +12,14 @@ var merge = require('merge-stream');
 var jshint = require('gulp-jshint');
 var karma = require('karma').server;
 var argv = require('yargs').argv;
+var uglify = require('gulp-uglify');
+var cssmin = require('gulp-cssmin');
+var ngmin = require('gulp-ngmin');
 
 ////////// parameters
 var mock = argv.mock == 'true' || argv.mock === undefined;
 var prod = argv.prod == 'true';
+var minify = argv.minify == 'true' || argv.minify === undefined;
 
 ////////// code location
 var app = {
@@ -113,14 +118,22 @@ var testlib = {
 
 var commontasks = ['concatjslib', 'concatjslibmin', 'concatcsslib', 'concatcsslibmin', 'sass', 'copylibfiles'];
 var concatjstasks = ['concatjsapp', 'concatjsappdocs', 'concatjsdocs']
+var moreprodtasks = ['copydocssamples'];
+if(minify){
+    moreprodtasks = moreprodtasks.concat(['minifyjs', 'minifycss']);
+}
+moreprodtasks = moreprodtasks.concat(['linkjsprod'])
 gulp.task('dev', commontasks.concat(['linkjsdev']));
-gulp.task('prod', commontasks.concat(concatjstasks).concat(['copydocssamples', 'linkjsprod']));
+gulp.task('prod', commontasks.concat(concatjstasks).concat(moreprodtasks));
+// gulp.task('prod', commontasks.concat(concatjstasks).concat(['copydocssamples', 'minifycss', 'linkjsprod']));
 
 ////////// Common tasks
 concattask('concatjslib', {src: lib.js, dest: 'js/lib.js'});
 concattask('concatjslibmin', {src: lib.jsmin, dest: 'js/lib.min.js'});
 concattask('concatcsslib', {src: lib.css, dest: 'css/lib.css'});
 concattask('concatcsslibmin', {src: lib.cssmin, dest: 'css/lib.min.css'});
+minifyjstask('minifyjs');
+minifycsstask('minifycss');
 copytask('copylibfiles', lib.tocopy, '', {prefix: 3});
 jshinttask('jshintall')
 sasstask('sass');
@@ -162,6 +175,26 @@ function concattask(id, options){
         return stream_concat
             .pipe(gulp.dest('./dist/'));
     });
+}
+
+function minifyjstask(id){
+    gulp.task(id, ['concatjsapp'], function () {
+        return gulp.src('./dist/js/app.js')
+            .pipe(ngmin({dynamic: false}))
+            .pipe(uglify())
+            .pipe(gulp.dest('./dist/js'));
+    });
+}
+
+function minifycsstask(id){
+    gulp.task(id, ['sass'], function (p) {
+        // console.log(JSON.stringify(p))
+        return gulp.src('./dist/css/app.css')
+            .pipe(debug())
+            .pipe(cssmin())
+            .pipe(gulp.dest('./dist/css'));
+    });
+
 }
 
 function jstesttask(id){
