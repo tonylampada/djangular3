@@ -14,7 +14,8 @@ YELLOW='\e[0;33m'
 
 workon djangular3  # Muda isso pro nome do virtalenv do seu projeto
 
-export PROJ_BASE="$(dirname ${BASH_SOURCE[0]})"
+THIS_SCRIPT_PATH=$(readlink -f $0)
+export PROJ_BASE=$(dirname $THIS_SCRIPT_PATH)
 CD=$(pwd)
 cd $PROJ_BASE
 export PROJ_BASE=$(pwd)
@@ -179,7 +180,7 @@ function dorun {
     echo_green "STARTING $name ..."
     echo "$cmd"
     t1=$(now_milis)
-    $cmd
+    eval $cmd
     exitcode=$?
     t2=$(now_milis)
     delta_t=$(expr $t2 - $t1)
