@@ -16,10 +16,6 @@ workon djangular3  # Muda isso pro nome do virtalenv do seu projeto
 
 THIS_SCRIPT_PATH=$(readlink -f $0)
 export PROJ_BASE=$(dirname $THIS_SCRIPT_PATH)
-CD=$(pwd)
-cd $PROJ_BASE
-export PROJ_BASE=$(pwd)
-cd $CD
 
 #. ci/funcs.sh
 
@@ -65,84 +61,75 @@ function devhelp {
 }
 
 function pytests {
-    CD=$(pwd)
     cd $PROJ_BASE
     dorun "./manage.py test cameras" "Testes python"
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
 function djangorun {
-    CD=$(pwd)
     cd $PROJ_BASE
     dorun "./manage.py runserver" "Servidor django"
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
 function frontdev {
-    CD=$(pwd)
     cd $PROJ_BASE/frontend
     dorun "gulp dev $*" "Dev Build"
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
 function frontprodmock {
-    CD=$(pwd)
     cd $PROJ_BASE/frontend
     dorun "gulp prod --mock true $*" "Prod build with mock API"
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
 function frontprod {
-    CD=$(pwd)
     cd $PROJ_BASE/frontend
     dorun "gulp prod --mock false $*" "Prod build - real deal"
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
 function copy2www {
-    CCD=$(pwd)
     cd $PROJ_BASE/frontend
     frontprod
     mkdir -p ../cameras/static/
     cp -Rf dist/js dist/css ../cameras/static/
-    cd $CCD
+    cd -
     return $exitcode
 }
 
 function frontrun {
-    CD=$(pwd)
     cd $PROJ_BASE/frontend
     gulp runserver
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
 function runjshint {
-    CD=$(pwd)
     cd $PROJ_BASE/frontend
     dorun "gulp jshintall" "JS Hint"
     exitcode=$?
-    cd $CD
+    cd - > /dev/null
     return $exitcode
 }
 
 function jstests {
-    CD=$(pwd)
     cd $PROJ_BASE/frontend
     dorun "gulp test $*" "JS tests"
     exitcode=$?
-    cd $CD
+    cd -
     return $exitcode
 }
 
