@@ -14,7 +14,11 @@ YELLOW='\e[0;33m'
 
 workon djangular3  # Muda isso pro nome do virtalenv do seu projeto
 
-THIS_SCRIPT_PATH=$(readlink -f $0)
+if [ "${BASH_SOURCE}" -eq "" ]; then
+    THIS_SCRIPT_PATH=$(readlink -f ${(%):-%N})
+else
+    THIS_SCRIPT_PATH=$BASH_SOURCE
+fi
 export PROJ_BASE=$(dirname $THIS_SCRIPT_PATH)
 
 #. ci/funcs.sh
@@ -61,75 +65,75 @@ function devhelp {
 }
 
 function pytests {
-    cd $PROJ_BASE
+    pushd $PROJ_BASE
     dorun "./manage.py test cameras" "Testes python"
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
 function djangorun {
-    cd $PROJ_BASE
+    pushd $PROJ_BASE
     dorun "./manage.py runserver" "Servidor django"
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
 function frontdev {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp dev $*" "Dev Build"
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
 function frontprodmock {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp prod --mock true $*" "Prod build with mock API"
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
 function frontprod {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp prod --mock false $*" "Prod build - real deal"
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
 function copy2www {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     frontprod
     mkdir -p ../cameras/static/
     cp -Rf dist/js dist/css ../cameras/static/
-    cd -
+    popd
     return $exitcode
 }
 
 function frontrun {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     gulp runserver
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
 function runjshint {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp jshintall" "JS Hint"
     exitcode=$?
-    cd - > /dev/null
+    popd
     return $exitcode
 }
 
 function jstests {
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp test $*" "JS tests"
     exitcode=$?
-    cd -
+    popd
     return $exitcode
 }
 
