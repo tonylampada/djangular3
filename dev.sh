@@ -14,11 +14,12 @@ YELLOW='\e[0;33m'
 
 workon djangular3  # Muda isso pro nome do virtalenv do seu projeto
 
-export PROJ_BASE="$(dirname ${BASH_SOURCE[0]})"
-CD=$(pwd)
-cd $PROJ_BASE
-export PROJ_BASE=$(pwd)
-cd $CD
+if [ "${BASH_SOURCE}" -eq "" ]; then
+    THIS_SCRIPT_PATH=$(readlink -f ${(%):-%N})
+else
+    THIS_SCRIPT_PATH=$BASH_SOURCE
+fi
+export PROJ_BASE=$(dirname $THIS_SCRIPT_PATH)
 
 #. ci/funcs.sh
 
@@ -64,84 +65,75 @@ function devhelp {
 }
 
 function pytests {
-    CD=$(pwd)
-    cd $PROJ_BASE
+    pushd $PROJ_BASE
     dorun "./manage.py test cameras" "Testes python"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function djangorun {
-    CD=$(pwd)
-    cd $PROJ_BASE
+    pushd $PROJ_BASE
     dorun "./manage.py runserver" "Servidor django"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function frontdev {
-    CD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp dev $*" "Dev Build"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function frontprodmock {
-    CD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp prod --mock true $*" "Prod build with mock API"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function frontprod {
-    CD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp prod --mock false $*" "Prod build - real deal"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function copy2www {
-    CCD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     frontprod
     mkdir -p ../cameras/static/
     cp -Rf dist/js dist/css ../cameras/static/
-    cd $CCD
+    popd
     return $exitcode
 }
 
 function frontrun {
-    CD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     gulp runserver
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function runjshint {
-    CD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp jshintall" "JS Hint"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
 function jstests {
-    CD=$(pwd)
-    cd $PROJ_BASE/frontend
+    pushd $PROJ_BASE/frontend
     dorun "gulp test $*" "JS tests"
     exitcode=$?
-    cd $CD
+    popd
     return $exitcode
 }
 
@@ -179,7 +171,7 @@ function dorun {
     echo_green "STARTING $name ..."
     echo "$cmd"
     t1=$(now_milis)
-    $cmd
+    eval $cmd
     exitcode=$?
     t2=$(now_milis)
     delta_t=$(expr $t2 - $t1)
